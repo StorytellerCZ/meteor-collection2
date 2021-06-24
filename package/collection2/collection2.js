@@ -143,8 +143,8 @@ Mongo.Collection.prototype.attachSchema = function c2AttachSchema(ss, options) {
 
       let schema, selector, target;
       // Position 0 reserved for base schema
-      for (var i = 1; i < schemas.length; i++) {
-        schema = schemas[i];
+      schemas.forEach((schema) => {
+        if (!schema.selector) return null;
         selector = Object.keys(schema.selector)[0];
 
         // We will set this to undefined because in theory you might want to select
